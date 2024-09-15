@@ -1,0 +1,51 @@
+<nav class="bg-green-600 p-4 shadow-lg fixed top-0 left-0 w-full z-50">
+    <div class="container mx-auto flex items-center justify-between">
+      <!-- Logo and Brand Name -->
+      <div class="flex items-center">
+        <img src="assets/logo.avif" alt="Organic Store Logo" class="h-8 w-auto mr-2"/>
+        <span class="text-white text-xl font-bold">Organic Store</span>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button (click)="toggleMenu()" class="md:hidden text-white text-2xl focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="#" class="nav-link" routerLink="/landingpage" >Home</a>
+        <a href="#" class="nav-link" routerLink="/about">About</a>
+        <a href="#" class="nav-link" routerLink="/login" >Products</a>
+        <a href="#contact" class="nav-link" >Contact</a>
+      </div>
+
+      <!-- Search Bar -->
+      <!-- <div class="relative hidden md:block w-full max-w-xs">
+        <input type="text" placeholder="Search..." class="py-2 px-4 rounded-lg w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all ease-in-out"/>
+        <svg class="absolute right-2 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a7 7 0 011.528 13.963l4.397 4.398a1 1 0 001.415-1.414l-4.398-4.397A7 7 0 0111 4z"></path>
+        </svg>
+      </div> -->
+
+      <!-- Account and Cart Buttons -->
+      <div class="relative flex items-center space-x-4">
+        <!-- Account Button -->
+        <button class="text-white font-medium hover:text-yellow-300 transition-transform transform hover:scale-110 ease-in-out duration-300" routerLink="/login"> 
+          <svg class="w-6 h-6 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.403-5.612A1.993 1.993 0 0017.007 10H7.993a1.993 1.993 0 00-1.59.788L5 17h5m3-3h4v-2h-4v2zm0 4h4v-2h-4v2z"></path>
+          </svg>
+          <span class="ml-2">Login</span>
+        </button>
+
+        <!-- Cart Button -->
+        <!-- <button class="text-white font-medium hover:text-yellow-300 transition-transform transform hover:scale-110 ease-in-out duration-300">
+          <svg class="w-6 h-6 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.7 2.1a2 2 0 001.9 1.4h10.8a2 2 0 001.9-1.4L21 5h2m-2 0v2M3 7h16m-1 9a3 3 0 00-6 0h6m-6 0a3 3 0 01-6 0h6m-6 0a3 3 0 006 0m-3-4v4m3 0h4m-2-4h-4"></path>
+          </svg>
+          <span class="ml-2">Cart</span>
+        </button> -->
+      </div>
+    </div>
+  </nav>

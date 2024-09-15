@@ -1,0 +1,110 @@
+<div class="background">
+  <div class="max-w-7xl mx-auto p-8 bg-gray-800 rounded-md shadow-md form-container">
+    <h1 class="text-2xl font-bold text-white mb-6">Product Adding</h1>
+    
+    <form [formGroup]="userForm" (ngSubmit)="addData()">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+        <!-- Product Name -->
+        <div class="mb-4">
+          <label for="P_Name" class="block text-gray-300 text-sm font-bold mb-2">Product Name</label>
+          <input type="text" id="P_Name" formControlName="P_Name"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+          <div class="text-red-600 text-sm mt-1" *ngIf="userForm.get('P_Name')?.invalid && userForm.get('P_Name')?.touched">
+            <div *ngIf="userForm.get('P_Name')?.errors?.['required']">Product Name is required.</div>
+            <div *ngIf="userForm.get('P_Name')?.errors?.['pattern']">Product Name must contain only letters and spaces, between 3 and 20 characters.</div>
+          </div>
+        </div>
+
+        <!-- Product Description -->
+        <div class="mb-4">
+          <label for="P_description" class="block text-gray-300 text-sm font-bold mb-2">Product Description</label>
+          <textarea id="P_description" formControlName="P_description" rows="4" placeholder="Enter the product description"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white"></textarea>
+          <div class="text-red-600 text-sm mt-1" *ngIf="userForm.get('P_description')?.invalid && userForm.get('P_description')?.touched">
+            <div *ngIf="userForm.get('P_description')?.errors?.['required']">Product Description is required.</div>
+            <div *ngIf="userForm.get('P_description')?.errors?.['pattern']">Description must be between 10 and 100 characters.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+        <!-- Product Price -->
+        <div class="mb-4">
+          <label for="P_Price" class="block text-gray-300 text-sm font-bold mb-2">Product Price</label>
+          <input type="number" id="P_Price" formControlName="P_Price"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+          <div class="text-red-600 text-sm mt-1" *ngIf="userForm.get('P_Price')?.invalid && userForm.get('P_Price')?.touched">
+            <div *ngIf="userForm.get('P_Price')?.errors?.['required']">Product Price is required.</div>
+            <div *ngIf="userForm.get('P_Price')?.errors?.['pattern']">Price must be a number up to 5 digits.</div>
+          </div>
+        </div>
+
+        <!-- Stock Quantity -->
+        <div class="mb-4">
+          <label for="P_Stock" class="block text-gray-300 text-sm font-bold mb-2">Stock Quantity</label>
+          <input type="number" id="P_Stock" formControlName="P_Stock"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+          <div class="text-red-600 text-sm mt-1" *ngIf="userForm.get('P_Stock')?.invalid && userForm.get('P_Stock')?.touched">
+            <div *ngIf="userForm.get('P_Stock')?.errors?.['required']">Stock Quantity is required.</div>
+            <div *ngIf="userForm.get('P_Stock')?.errors?.['pattern']">Stock Quantity must be a number up to 4 digits.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+        <!-- Brand Name -->
+        <div class="mb-4">
+          <label for="P_Brand" class="block text-gray-300 text-sm font-bold mb-2">Brand Name</label>
+          <input type="text" id="P_Brand" formControlName="P_Brand"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+          <div class="text-red-600 text-sm mt-1" *ngIf="userForm.get('P_Brand')?.invalid && userForm.get('P_Brand')?.touched">
+            <div *ngIf="userForm.get('P_Brand')?.errors?.['required']">Brand Name is required.</div>
+            <div *ngIf="userForm.get('P_Brand')?.errors?.['pattern']">Brand Name must contain only letters and spaces, between 3 and 100 characters.</div>
+          </div>
+        </div>
+
+        <!-- Product Category -->
+        <div class="mb-4">
+          <label for="P_Category_id" class="block text-gray-300 text-sm font-bold mb-2">Product Category</label>
+          <select id="P_Category_id" formControlName="P_Category_id"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+            <option value="" disabled>Select a category</option>
+            <option value="1">100% Organic</option>
+            <option value="2">Organic</option>
+            <option value="3">Made with organic ingredients</option>
+            <option value="4">70% Organic</option>
+          </select>
+          <div class="text-red-600 text-sm mt-1" *ngIf="userForm.get('P_Category_id')?.invalid && userForm.get('P_Category_id')?.touched">
+            <div *ngIf="userForm.get('P_Category_id')?.errors?.['required']">Product Category is required.</div>
+            <div *ngIf="userForm.get('P_Category_id')?.errors?.['pattern']">Category ID must be between 1 and 4.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Image Upload -->
+      <div class="mb-6">
+        <label for="P_image" class="block text-gray-300 text-sm font-bold mb-2">Upload Image</label>
+        <input type="file" id="P_image" formControlName="P_image" (change)="onFileChange($event)"
+          class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+        <div class="text-red-600 text-sm mt-1" *ngIf="userForm.get('P_image')?.invalid && userForm.get('P_image')?.touched">
+          <div *ngIf="userForm.get('P_image')?.errors?.['required']">Image is required.</div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
+        Update
+      </button>
+      
+    </form>
+    
+    <!-- Toast Container -->
+    <p-toast></p-toast>
+  </div>
+</div>

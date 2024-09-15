@@ -1,0 +1,19 @@
+<div class="form-container">
+    <h2>Discount Form</h2>
+    <form [formGroup]="discountForm" (ngSubmit)="onSubmit()" #form="ngForm">
+      <div class="form-group">
+        <label for="discount">Discount (%):</label>
+        <input id="discount" formControlName="discount" type="number" />
+        <div class="error-message" *ngIf="discountForm.get('discount')?.invalid && discountForm.get('discount')?.touched">
+          <small *ngIf="discountForm.get('discount')?.errors?.['required']">Discount is required.</small>
+          <small *ngIf="discountForm.get('discount')?.errors?.['pattern']">Enter a valid number.</small>
+          <small *ngIf="discountForm.get('discount')?.errors?.['min']">Discount must be at least 0.</small>
+          <small *ngIf="discountForm.get('discount')?.errors?.['max']">Discount cannot exceed 100.</small>
+        </div>
+      </div>
+      <button type="submit" [disabled]="discountForm.invalid" class="submit-button">Submit</button>
+    </form>
+    <!-- PrimeNG Toast -->
+  <p-toast></p-toast>
+  </div>
+  

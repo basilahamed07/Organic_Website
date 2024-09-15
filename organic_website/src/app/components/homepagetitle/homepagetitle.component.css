@@ -1,0 +1,31 @@
+/* this is for title card */
+h1{
+    font-family: system-ui;
+    font-size: 50px;
+    margin: 0;
+    color: #333; /* Dark color for contrast */
+  }
+  
+  .deader {
+    display: flex;
+    width: 100vw;
+    height: 70px;
+    padding-top: 22px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Ensure it appears above other content */
+  }
+  
+  .betterwrapper {
+    display: flex;
+    flex-wrap: wrap;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .better {
+    font-weight: 800;
+   
+  }
+  .better:hover {
+    color: #ff9800; /* Color change on hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }

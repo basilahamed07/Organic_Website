@@ -1,0 +1,33 @@
+<!-- Card Container -->
+<br><br><br><br>
+<div class="card-container">
+  <!-- Loop through cardData to display each product -->
+  <div *ngFor="let product of cardData">
+    <!-- Conditionally display the product details if the brand is 'vegetables' -->
+    <div class="card" *ngIf="product.P_Brand === 'vegetables'">
+      <img [src]="product.P_image" alt="Product Image" class="product-image" width="100px" height="100px"/>
+      <div class="card-body">
+        <h3 class="product-title">{{ product.P_Name }}</h3>
+        <p class="product-price">${{ product.P_Price }}</p>
+        
+        <!-- Quantity Input with ngModel -->
+        <div class="quantity-controls">
+          <button class="quantity-button" (click)="updateQuantity(product, -1)">-</button>
+          <input type="number" [(ngModel)]="product.quantity" class="quantity-input" min="1"/>
+          <button class="quantity-button" (click)="updateQuantity(product, 1)">+</button>
+        </div>
+        
+        <!-- Add to Cart Button -->
+        <button class="add-to-cart-button" (click)="addToCart(product)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Popup Modal -->
+<div class="modal" *ngIf="showSuccessPopup">
+  <div class="modal-content">
+    <span class="close" (click)="closePopup()">&times;</span>
+    <p>Product added successfully!</p>
+  </div>
+</div>

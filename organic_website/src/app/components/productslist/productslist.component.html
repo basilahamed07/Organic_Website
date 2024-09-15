@@ -1,0 +1,82 @@
+<!-- Navigation Bar -->
+<nav class="bg-green-600 p-4 shadow-lg fixed top-0 left-0 w-full z-50">
+  <div class="container mx-auto flex items-center justify-between">
+    <!-- Logo and Brand Name -->
+    <div class="flex items-center">
+      <img src="assets/logo.avif" alt="Organic Store Logo" class="h-8 w-auto mr-2"/>
+      <span class="text-white text-xl font-bold">Organic Store</span>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button (click)="toggleMenu()" class="md:hidden text-white text-2xl focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+
+    <!-- Desktop Navigation Links -->
+    <div class="hidden md:flex space-x-6 items-center">
+      <a routerLink="fruits" class="nav-link">Fruits</a>
+      <a routerLink="vegetables" class="nav-link">Vegetables</a>
+      <a routerLink="nuts" class="nav-link">Nuts</a>
+      <a routerLink="oils" class="nav-link">Oils</a>
+      <!-- <a href="#" class="nav-link">Contact</a> -->
+    </div>
+
+    <!-- Account and Cart Buttons -->
+    <div class="relative flex items-center space-x-4">
+      <!-- Account Button -->
+      <button routerLink="userprofile" class="text-white font-medium hover:text-yellow-300 transition-transform transform hover:scale-110 ease-in-out duration-300">
+        <svg class="w-6 h-6 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.403-5.612A1.993 1.993 0 0017.007 10H7.993a1.993 1.993 0 00-1.59.788L5 17h5m3-3h4v-2h-4v2zm0 4h4v-2h-4v2z"></path>
+        </svg>
+        <span class="ml-2">Account</span>
+      </button>
+
+      <!-- Cart Button -->
+      <button routerLink="cart" class="text-white font-medium hover:text-yellow-300 transition-transform transform hover:scale-110 ease-in-out duration-300">
+        <svg class="w-6 h-6 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.7 2.1a2 2 0 001.9 1.4h10.8a2 2 0 001.9-1.4L21 5h2m-2 0v2M3 7h16m-1 9a3 3 0 00-6 0h6m-6 0a3 3 0 01-6 0h6m-6 0a3 3 0 006 0m-3-4v4m3 0h4m-2-4h-4"></path>
+        </svg>
+        <span class="ml-2">Cart</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<div class="sidebar" [ngClass]="{ 'active': isSidebarOpen }">
+  <button class="close-btn" (click)="toggleSidebar()">×</button>
+  <h2>Organic Store</h2>
+  <ul>
+    <li>
+      <a><i class="fas fa-leaf"></i> 100% Organic</a>
+      <ul class="submenu">
+        <li><a routerLink="vegetables"><i class="fas fa-carrot"></i> Vegetables</a></li>
+        <li><a routerLink="fruits"><i class="fas fa-apple-alt"></i> Fruits</a></li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="nuts"><i class="fas fa-nut"></i> Nuts</a>
+    </li>
+    <li>
+      <a routerLink="oils"><i class="fas fa-oil-can"></i> Oils</a>
+    </li>
+    <!-- Orders Link -->
+    <li>
+      <a routerLink="orderview"><i class="fas fa-receipt"></i> Orders</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>
+
+<!-- Chatbot Component -->
+<app-chatbot></app-chatbot>
+
+<!-- Toggle Sidebar Button -->
+<button class="open-btn" (click)="toggleSidebar()"><i class="fas fa-bars"></i></button>

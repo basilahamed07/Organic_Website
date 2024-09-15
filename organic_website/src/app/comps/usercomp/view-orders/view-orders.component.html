@@ -1,0 +1,34 @@
+<div class="orders-container">
+  <h1>Your Orders</h1>
+
+  <!-- Orders List -->
+  <div *ngFor="let order of orders; let i = index" class="order-card">
+    <div class="order-summary">
+      <div class="order-header" (click)="toggleDetails(i)">
+        <h2>Order #{{ i + 1 }}</h2>
+        <p>Date: {{ order.order_date }}</p>
+        <p>Total Price: ₹{{ order.total_price }}</p>
+        <button class="toggle-button">Show More</button>
+      </div>
+      <div class="order-details" *ngIf="order.showDetails">
+        <h3>Products:</h3>
+        <ul>
+          <li *ngFor="let product of order.products">
+            <img [src]="product.P_Image" alt="{{ product.P_Name }}">
+            <div class="product-info">
+              <h4>{{ product.P_Name }}</h4>
+              <p>Price: ₹{{ product.P_Price }}</p>
+              <p>Quantity: {{ order.quantities[order.products.indexOf(product)] }}</p>
+            </div>
+          </li>
+        </ul>
+        <h3>Shipping Details:</h3>
+        <p *ngIf="order.shipping_details">
+          {{ order.shipping_details.address }}, {{ order.shipping_details.city }}, {{ order.shipping_details.state }} - {{ order.shipping_details.pincode }}
+        </p>
+        <!-- <button class="download-button" (click)="downloadInvoice(order.shipping_id)">Download Invoice</button> -->
+        <button class="download-button" (click)="generatePDF(order)">Download PDF</button>
+      </div>
+    </div>
+  </div>
+</div>

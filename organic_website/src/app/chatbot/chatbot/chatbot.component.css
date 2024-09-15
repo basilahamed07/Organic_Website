@@ -1,0 +1,210 @@
+/* src/app/components/chatbot/chatbot.component.css */
+
+/* Chat Toggle Button */
+.chat-toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.chat-toggle-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+/* Chatbot Container */
+.chatbot-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 350px;
+  max-height: 500px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hide chatbox */
+.chatbot-container.closed {
+  transform: translateX(100%);
+}
+
+/* Chatbox */
+.chatbox {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f7f7f7;
+}
+
+/* Message Container */
+.message-container {
+  margin-bottom: 15px;
+}
+
+/* Text Messages */
+.message-text {
+  background-color: #e9ecef;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  align-self: flex-start;
+}
+
+/* Product List */
+.product-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  align-items: center;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.product-details h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.product-details p {
+  color: #666;
+}
+
+.price {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* Cart List */
+.cart-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  align-items: center;
+}
+
+.cart-item-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.remove-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #cc0000;
+}
+
+/* Order List */
+.order-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Container */
+.button-container {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  background-color: #f1f1f1;
+}
+
+.query-button, .buy-now-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.query-button:hover, .buy-now-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.query-button:focus, .buy-now-button:focus {
+  outline: none;
+}

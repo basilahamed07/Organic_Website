@@ -1,0 +1,69 @@
+<div class="container mx-auto p-6">
+  <!-- Address Form -->
+  <div class="address-form mb-8 p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-semibold mb-4">Delivery Address</h2>
+    <form (ngSubmit)="onAddressChange()" class="space-y-4">
+      <div>
+        <label for="first-line" class="block text-sm font-medium text-gray-700">First Line:</label>
+        <input type="text" id="first-line" [(ngModel)]="address.first_line" name="first_line" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+      </div>
+
+      <div>
+        <label for="city" class="block text-sm font-medium text-gray-700">City:</label>
+        <input type="text" id="city" [(ngModel)]="address.city" name="city" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+      </div>
+
+      <div>
+        <label for="state" class="block text-sm font-medium text-gray-700">State:</label>
+        <input type="text" id="state" [(ngModel)]="address.state" name="state" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+      </div>
+
+      <div>
+        <label for="pincode" class="block text-sm font-medium text-gray-700">Pincode:</label>
+        <input type="text" id="pincode" [(ngModel)]="address.pincode" name="pincode" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+      </div>
+
+      <button type="submit" class="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Update Address</button>
+    </form>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="cart-items mb-8 p-6 bg-white shadow-lg rounded-lg h-96 overflow-y-auto">
+    <h2 class="text-2xl font-semibold mb-4">Your Cart</h2>
+    <div *ngFor="let product of products; let i = index" class="cart-item mb-4 p-4 border-b last:border-0 flex items-center">
+      <img [src]="product.P_image" alt="{{ product.P_Name }}" class="w-20 h-20 object-cover mr-4">
+      <div class="item-details flex-1">
+        <h3 class="text-lg font-semibold">{{ product.P_Name }}</h3>
+        <p class="text-gray-600">Price: ₹{{ product.P_Price }}</p>
+        <div class="quantity-controls flex items-center mt-2">
+          <button (click)="decreaseQuantity(i)" class="bg-gray-200 px-2 py-1 rounded-l-lg">-</button>
+          <input type="text" [value]="quantities[i]" readonly class="w-16 text-center border-t border-b border-gray-300">
+          <button (click)="increaseQuantity(i)" class="bg-gray-200 px-2 py-1 rounded-r-lg">+</button>
+        </div>
+        <button class="remove-button mt-2 text-red-500 hover:text-red-700" (click)="deleteProduct(i)">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coupon Code -->
+  <div class="coupon-section p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-semibold mb-4">Apply Coupon</h2>
+    <div class="coupon-input-container flex mb-4">
+      <input type="text" [(ngModel)]="couponCode" placeholder="Enter coupon code" class="w-full border-gray-300 rounded-l-md shadow-sm py-2 px-4">
+      <button (click)="applyCoupon()" class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600">Apply</button>
+    </div>
+    <p *ngIf="discount > 0" class="text-green-600 font-medium mb-4">Discount Applied: {{ discount }}%</p>
+    <div class="total-price">
+      <h3 class="text-xl font-semibold mb-2">Total Price</h3>
+      <p>Subtotal: ₹{{ totalPrice + (totalPrice * discount / 100) }}</p>
+      <p>Discount: ₹{{ totalPrice * discount / 100 }}</p>
+      <p class="text-lg font-semibold"><strong>Total: ₹{{ totalPrice }}</strong></p>
+    </div>
+    <!-- Checkout Button -->
+    <div class="checkout-button mt-4">
+      <button (click)="buyNow()" [disabled]="products.length === 0 || totalPrice <= 0" class="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 disabled:bg-gray-300">Place Order</button>
+    </div>
+  </div>
+</div>
+
+<div id="map" class="map mt-8" style="height: 500px; width: 100%;"></div>

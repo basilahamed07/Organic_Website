@@ -1,0 +1,66 @@
+<!-- src/app/components/chatbot/chatbot.component.html -->
+
+<!-- Chat Toggle Button -->
+<div class="chat-toggle-button" (click)="toggleChat()">
+  <span *ngIf="!chatVisible" class="chat-icon">Chat</span>
+  <span *ngIf="chatVisible" class="chat-icon">×</span>
+</div>
+
+<!-- Chatbot Container -->
+<div class="chatbot-container" *ngIf="chatVisible">
+  <div class="chatbox">
+    <!-- Display Messages -->
+    <div class="message-container" *ngFor="let message of messages">
+      <!-- Text Messages -->
+      <div *ngIf="message.type === 'text'" class="message-text">
+        {{ message.text }}
+      </div>
+
+      <!-- Product Messages -->
+      <div *ngIf="message.type === 'products'" class="product-list">
+        <div *ngFor="let product of message.items" class="product-card">
+          <img [src]="product.P_image" alt="{{ product.P_Name }}" class="product-image" *ngIf="product.P_image">
+          <div class="product-details">
+            <h3>{{ product.P_Name }}</h3>
+            <p>{{ product.description }}</p>
+            <span class="price">₹{{ product.P_Price }}</span>
+            <button (click)="buyNow(product.id)" class="buy-now-button">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart Messages -->
+      <div *ngIf="message.type === 'cart'" class="cart-list">
+        <div *ngFor="let item of message.items" class="cart-item">
+          <img [src]="item.image" alt="Product Image" class="cart-item-image" *ngIf="item.image">
+          <div class="cart-item-details">
+            <h4>{{ item.name }}</h4>
+            <p>Price: ₹{{ item.price }}</p>
+            <p>Quantity: {{ item.quantity }}</p>
+            <!-- <button (click)="removeFromCart(item.id)" class="remove-button">Remove</button> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Messages -->
+      <div *ngIf="message.type === 'orders'" class="order-list">
+        <div *ngFor="let order of message.items" class="order-card">
+          <h4>Order ID: {{ order.id }}</h4>
+          <p>Shipping: {{ order.shipping }}</p>
+          <p>Date: {{ order.order_date | date }}</p>
+          <p>Total Price: ₹{{ order.total_price }}</p>
+          <!-- <p>Products: {{ order.product_ids }}</p>
+          <p>Quantity: {{ order.quantity }}</p>
+          <p>Location: ({{ order.latitude }}, {{ order.longitude }})</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button Container -->
+  <div class="button-container">
+    <button (click)="onListProductsClick()" class="query-button">New Launch</button>
+    <button (click)="onMyOrdersClick()" class="query-button">My Orders</button>
+    <button (click)="onCouponClick()" class="query-button">Coupon</button>
+  </div>
+</div>

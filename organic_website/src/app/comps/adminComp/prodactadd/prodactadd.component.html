@@ -1,0 +1,99 @@
+<div class="w-full mx-auto p-8 bg-gray-800 rounded-md shadow-md form-container">
+  <h1 class="text-2xl font-bold text-white mb-6">Product Adding</h1>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    
+    <!-- Container for form fields -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+
+      <!-- Product Name -->
+      <div class="mb-6">
+        <label for="P_Name" class="block text-gray-300 text-sm font-bold mb-2">Product Name</label>
+        <input type="text" id="P_Name" name="P_Name" formControlName="P_Name" required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+        <div class="text-red-600 text-sm font-bold mt-1" *ngIf="userForm.get('P_Name').touched && userForm.get('P_Name').invalid">
+          <div *ngIf="userForm.get('P_Name').errors.required">This field is required</div>
+          <div *ngIf="userForm.get('P_Name').errors.pattern">Product name must contain only letters (3-20 characters)</div>
+        </div>
+      </div>
+
+      <!-- Product Description -->
+      <div class="mb-6">
+        <label for="P_description" class="block text-gray-300 text-sm font-bold mb-2">Product Description</label>
+        <textarea id="P_description" name="P_description" formControlName="P_description" rows="4" placeholder="Enter the product description" required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white"></textarea>
+        <div class="text-red-600 text-sm font-bold mt-1" *ngIf="userForm.get('P_description').touched && userForm.get('P_description').invalid">
+          <div *ngIf="userForm.get('P_description').errors.required">This field is required</div>
+          <div *ngIf="userForm.get('P_description').errors.pattern">Description must be between 10 and 100 characters</div>
+        </div>
+      </div>
+
+      <!-- Product Price -->
+      <div class="mb-6">
+        <label for="P_Price" class="block text-gray-300 text-sm font-bold mb-2">Product Price</label>
+        <input type="number" id="P_Price" name="P_Price" formControlName="P_Price" required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+        <div class="text-red-600 text-sm font-bold mt-1" *ngIf="userForm.get('P_Price').touched && userForm.get('P_Price').invalid">
+          <div *ngIf="userForm.get('P_Price').errors.required">This field is required</div>
+          <div *ngIf="userForm.get('P_Price').errors.pattern">Price must be a number</div>
+        </div>
+      </div>
+
+      <!-- Product Stock -->
+      <div class="mb-6">
+        <label for="P_Stock" class="block text-gray-300 text-sm font-bold mb-2">Stock Quantity</label>
+        <input type="number" id="P_Stock" name="P_Stock" formControlName="P_Stock" required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+        <div class="text-red-600 text-sm font-bold mt-1" *ngIf="userForm.get('P_Stock').touched && userForm.get('P_Stock').invalid">
+          <div *ngIf="userForm.get('P_Stock').errors.required">This field is required</div>
+          <div *ngIf="userForm.get('P_Stock').errors.pattern">Stock must be a number up to 5000</div>
+        </div>
+      </div>
+
+      <!-- Brand Name -->
+      <div class="mb-6">
+        <label for="P_Brand" class="block text-gray-300 text-sm font-bold mb-2">Brand Name</label>
+        <input type="text" id="P_Brand" name="P_Brand" formControlName="P_Brand" required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+        <div class="text-red-600 text-sm font-bold mt-1" *ngIf="userForm.get('P_Brand').touched && userForm.get('P_Brand').invalid">
+          <div *ngIf="userForm.get('P_Brand').errors.required">This field is required</div>
+          <div *ngIf="userForm.get('P_Brand').errors.pattern">Brand name must contain only letters (3-20 characters)</div>
+        </div>
+      </div>
+
+      <!-- Product Category -->
+      <div class="mb-6">
+        <label for="P_Category_id" class="block text-gray-300 text-sm font-bold mb-2">Product Category</label>
+        <select id="P_Category_id" name="P_Category_id" formControlName="P_Category_id" required
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500 bg-gray-700 text-white">
+          <option value=1>100% Organic</option>
+          <option value=2>Organic</option>
+          <option value=3>Made with organic ingredients</option>
+          <option value=4>70% organic</option>
+        </select>
+        <div class="text-red-600 text-sm font-bold mt-1" *ngIf="userForm.get('P_Category_id').touched && userForm.get('P_Category_id').invalid">
+          <div *ngIf="userForm.get('P_Category_id').errors.required">This field is required</div>
+        </div>
+      </div>
+
+      <!-- Image Upload -->
+      <div class="mb-6 sm:col-span-2">
+        <label for="P_image" class="block text-gray-300 text-sm font-bold mb-2">Upload Image</label>
+        <input type="file" id="P_image" name="P_image" formControlName="P_image" (change)="onFileChange($event)" required
+          class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+        <div class="text-red-600 text-sm font-bold mt-1" *ngIf="userForm.get('P_image').touched && userForm.get('P_image').invalid">
+          <div *ngIf="userForm.get('P_image').errors.required">An image file is required</div>
+        </div>
+      </div>
+
+    </div>
+
+    <button type="submit"
+      class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
+      Add Product
+    </button>
+  </form>
+
+  <!-- PrimeNG Toast -->
+  <p-toast></p-toast>
+</div>

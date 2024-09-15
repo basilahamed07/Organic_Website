@@ -1,0 +1,40 @@
+<!-- vieworders.component.html -->
+
+<div class="orders-container">
+  <h1>Your Orders</h1>
+
+  <!-- Orders List -->
+  <div *ngFor="let order of orders; let i = index" class="order-card">
+    <div class="order-summary">
+      <div class="order-header" (click)="toggleDetails(i)">
+        <h2>Order #{{ i + 1 }}</h2>
+        <p>Date: {{ order.order_date }}</p>
+        <p>Total Price: ₹{{ order.total_price }}</p>
+        <button class="toggle-button">
+          {{ order.showDetails ? 'Hide Details' : 'Show Details' }}
+        </button>
+      </div>
+      <div class="order-details" *ngIf="order.showDetails">
+        <h3>Products:</h3>
+        <ul>
+          <li *ngFor="let product of order.products">
+            <img [src]="product.P_image" alt="{{ product.P_image }}" class="product-image">
+            <div class="product-info">
+              <h4>{{ product.P_Name }}</h4>
+              <p>Price: ₹{{ product.P_Price }}</p>
+              <p>Quantity: {{ order.quantities[order.products.indexOf(product)] }}</p>
+            </div>
+          </li>
+        </ul>
+        <h3>Shipping Details:</h3>
+        <p *ngIf="order.shipping_details">
+         <p>shipping id =   {{ order.shipping_details.Shipping_id }} </p> 
+         <!-- <p>shipping_status =  {{ order.shipping_details.shipping_status }}</p>  -->
+        <p>tracking id = {{ order.shipping_details.tracking_id }} </p>
+        {{ order.shipping_details.pincode }}
+        
+        <button class="download-button" (click)="generatePDF(order)">Send Email PDF</button>
+      </div>
+    </div>
+  </div>
+</div>

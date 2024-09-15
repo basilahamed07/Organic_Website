@@ -1,0 +1,152 @@
+/* Sidebar Styling */
+.sidebar {
+    position: fixed;
+    /* margin-top: 100px; */
+    top: 10px;
+    left: 0px; /* Initially hidden off-screen */
+    height: 100%;
+    width: 250px;
+    background: #4CAF50; /* Organic green */
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transform: translateX(-100%);
+}
+
+.sidebar.active {
+    transform: translateX(0); /* Slide into view */
+}
+
+.sidebar .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.sidebar .close-btn:hover {
+    color: #FFD700; /* Gold color */
+}
+
+.sidebar h2 {
+    padding: 20px;
+    font-size: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #FFD700;
+}
+
+.sidebar ul li i {
+    margin-right: 10px;
+}
+
+.submenu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    padding-left: 50px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #388E3C; /* Darker green */
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar ul li:hover .submenu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.submenu li a {
+    color: #dcdcdc;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submenu li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #FFD700;
+}
+
+/* Open Button Styling */
+.open-btn {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    background: #4CAF50; /* Organic green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.open-btn:hover {
+    background: #388E3C; /* Darker green */
+    transform: scale(1.1);
+}
+
+/* Content Styling */
+.content {
+    margin-left: 0; /* Initially hidden sidebar */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.active ~ .content {
+    margin-left: 250px; /* Adjust margin when sidebar is open */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        left: -200px;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0; /* Adjust for smaller screens */
+    }
+}
