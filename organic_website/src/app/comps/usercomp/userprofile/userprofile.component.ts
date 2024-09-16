@@ -39,8 +39,15 @@ export class UserprofileComponent implements OnInit {
     );
   }
 
-  logout() {
-    sessionStorage.clear(); // Clear session storage
-    this.router.navigate(['/login']); // Redirect to login page
+  logout(): void {
+    // Show a confirmation dialog to the user
+    const confirmed = window.confirm('Are you sure you want to log out?');
+  
+    // If user confirms, proceed with logging out
+    if (confirmed) {
+      sessionStorage.clear(); // Clear session storage
+      this.router.navigate(['/login']); // Redirect to login page
+    }
   }
+  
 }

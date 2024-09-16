@@ -13,6 +13,7 @@ export class NutsComponent implements OnInit {
   quantities: any[] = [];
   showSuccessPopup: boolean = false;
   existingCartIds: any[] = [];  // To store existing cart product IDs
+  existingQuandities:any[]=[];
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -40,13 +41,16 @@ export class NutsComponent implements OnInit {
     this.http.get('http://localhost:8000/api/users/get_user', { headers }).subscribe(
       (response: any) => {
         this.existingCartIds = response.data.cart_product_ids;
+        this.existingQuandities = response.data.quantities;
         console.log("Existing cart product IDs:", this.existingCartIds);
 
         // Initialize quantities to 1 for existing cart products
+        let i=0;
         this.existingCartIds.forEach(id => {
           if (!this.cart_product_ids.includes(id)) {
             this.cart_product_ids.push(id);
-            this.quantities.push(1); // Default quantity to 1
+            this.quantities.push(this.existingQuandities[i]);
+            i+=1;
           }
         });
       },

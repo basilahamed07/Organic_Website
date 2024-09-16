@@ -13,6 +13,7 @@ export class OilsComponent implements OnInit {
   quantities: any[] = [];
   showSuccessPopup: boolean = false;
   card_id: any[] = [];
+  existingQuandities:any[]=[];
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -43,10 +44,13 @@ export class OilsComponent implements OnInit {
         console.log("Existing cart product IDs:", this.card_id);
 
         // Initialize quantities for existing cart products
+        let i=0;
         this.card_id.forEach(id => {
           if (!this.cart_product_ids.includes(id)) {
             this.cart_product_ids.push(id);
-            this.quantities.push(1); // Default quantity to 1
+            this.existingQuandities = response.data.quantities;
+            this.quantities.push(this.existingQuandities[i]); // Default quantity to 1
+            i+=1;
           }
         });
       },

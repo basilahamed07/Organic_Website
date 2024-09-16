@@ -142,7 +142,7 @@
               alert(`Coupon applied! ${this.discount}% discount.`);
               
               // Optional: Confirm deletion of the coupon if this is intended
-              if (confirm('Do you want to delete this coupon?')) {
+              if (confirm('Do you want to use this coupon code it is one time only?')) {
                 this.apiService.delete(`coupon/${coupon.id}`).subscribe(
                   () => console.log('Coupon deleted successfully'),
                   (error: any) => this.handleError('deleting coupon', error)
@@ -163,11 +163,23 @@
     fetchUserAndCartData(): void {
       this.apiService.get('users/get_user').subscribe(
         (response: any) => {
+          let first_line1=response.data.first_line;
+          let city1= response.data.city;
+          let state1= response.data.state;
+          let pincode1= response.data.pincode;
+          if((first_line1=="temp")||(city1=="temp")||(state1=="temp")||(pincode1=="temp"))
+          {
+            first_line1="";
+            city1="";
+            state1="";
+            pincode1="";
+          }
+
           this.address = {
-            first_line: response.data.first_line,
-            city: response.data.city,
-            state: response.data.state,
-            pincode: response.data.pincode
+            first_line:first_line1,
+            city: city1,
+            state: state1,
+            pincode: pincode1
           };
           this.product_ids = response.data.cart_product_ids;
           this.quantities = response.data.quantities;
@@ -279,18 +291,35 @@
     }
 
     buyNow(): void {
-      // Check if there are items in the cart and the total price is greater than zero
+ 
       if (this.products.length > 0 && this.totalPrice > 0) {
-        this.apiService.patch('users/get_user', this.address).subscribe(
-          (response: any) => {
-            console.log('Address updated successfully', response);
-            this.createShipping();
-          },
-          (error: any) => this.handleError('updating address', error)
-        );
+
+        if (this.isAddressValid()) {
+          this.apiService.patch('users/get_user', this.address).subscribe(
+            (response: any) => {
+              console.log('Address updated successfully', response);
+              this.createShipping();
+            },
+            (error: any) => this.handleError('updating address', error)
+          );
+        } else {
+          alert('Your delivery address is incomplete . Please update your address before proceeding.');
+        }
       } else {
         alert('Your cart is empty. Please add items to your cart before proceeding.');
       }
+    }
+    
+    // Method to check if address is valid
+    private isAddressValid(): boolean {
+      return this.address.first_line.trim() !== '' && 
+             this.address.city.trim() !== '' && 
+             this.address.state.trim() !== '' && 
+             this.address.pincode.trim() !== '' && 
+             this.address.first_line !== 'temp' &&
+             this.address.city !== 'temp' &&
+             this.address.state !== 'temp' &&
+             this.address.pincode !== 'temp';
     }
 
     createShipping(): void {

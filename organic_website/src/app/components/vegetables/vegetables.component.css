@@ -4,23 +4,23 @@
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center; /* Center the cards horizontally */
-  padding: 20px; /* Add padding around the container */
+  padding: 20px; /* Add padding around the card container */
 }
 
-/* Individual Card */
+/* Card */
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 250px; /* Fixed width for the card */
+  width: 250px; /* Fixed width for uniformity */
   text-align: center;
   padding: 16px;
   box-sizing: border-box;
   transition: all 0.3s ease; /* Smooth transition for hover effects */
-  background-color: #fff; /* Background color for the card */
+  background-color: #fff; /* Ensure background color */
 }
 
-/* Hover Effects for Card */
+/* Card Hover Effects */
 .card:hover {
   transform: scale(1.05); /* Slightly enlarge the card on hover */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
@@ -28,11 +28,16 @@
 
 /* Product Image */
 .product-image {
-  width: 100px; /* Fixed width for image */
-  height: 100px; /* Fixed height for image */
-  object-fit: cover; /* Ensure image covers the area without distortion */
-  border-radius: 8px; /* Rounded corners for image */
-  transition: opacity 0.3s ease; /* Smooth transition for hover effects */
+  width: 100%; /* Full width of the card */
+  height: 150px; /* Fixed height */
+  object-fit: cover; /* Maintain aspect ratio and fill area */
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Fade Effect on Hover */
+.card:hover .product-image {
+  opacity: 0.9; /* Slightly fade image on hover */
 }
 
 /* Card Body */
@@ -45,7 +50,11 @@
   font-size: 16px;
   margin: 8px 0;
   transition: color 0.3s ease;
-  color: #333; /* Default text color */
+}
+
+/* Change Title Color on Hover */
+.card:hover .product-title {
+  color: #3498db; /* Change text color on hover */
 }
 
 /* Product Price */
@@ -54,6 +63,11 @@
   color: #2c3e50;
   margin: 8px 0;
   transition: color 0.3s ease;
+}
+
+/* Change Price Color on Hover */
+.card:hover .product-price {
+  color: #e74c3c; /* Change price color on hover */
 }
 
 /* Quantity Controls */
@@ -76,20 +90,10 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Quantity Button Hover Effect */
+/* Quantity Button Hover Effects */
 .quantity-button:hover {
   background-color: #2980b9; /* Darker blue on hover */
   transform: scale(1.1); /* Slightly enlarge button on hover */
-}
-
-/* Quantity Input */
-.quantity-input {
-  width: 60px;
-  text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 4px;
-  margin: 0 4px;
 }
 
 /* Add to Cart Button */
@@ -100,17 +104,18 @@
   padding: 12px;
   border-radius: 4px;
   cursor: pointer;
-  width: 100%;
+  width: 100%; /* Full width of the card */
   transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 12px; /* Space above the button */
 }
 
-/* Add to Cart Button Hover Effect */
+/* Add to Cart Button Hover Effects */
 .add-to-cart-button:hover {
   background-color: #c0392b; /* Darker red on hover */
   transform: scale(1.05); /* Slightly enlarge button on hover */
 }
 
-/* Modal Background */
+/* Modal */
 .modal {
   display: block; /* Show the modal */
   position: fixed;
@@ -129,7 +134,7 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 30%;
+  width: 30%; /* Adjust width as needed */
   text-align: center;
   border-radius: 8px;
 }
@@ -142,7 +147,7 @@
   font-weight: bold;
 }
 
-/* Close Button Hover Effect */
+/* Close Button Hover Effects */
 .close:hover, .close:focus {
   color: black;
   text-decoration: none;

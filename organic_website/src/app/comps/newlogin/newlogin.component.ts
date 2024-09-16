@@ -2,7 +2,6 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GenericApiService } from '../../services/apiservice/axiosservices.service'; // Adjust the path as necessary
 import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar for better notifications
 
 @Component({
@@ -18,9 +17,8 @@ export class NewloginComponent implements OnInit {
   isSignUp = false;
 
   constructor(
-    private apiService: GenericApiService,
-    private router: Router,
     private fb: FormBuilder,
+    private router: Router,
     private http: HttpClient,
     private snackBar: MatSnackBar // Inject MatSnackBar
   ) {
@@ -28,8 +26,8 @@ export class NewloginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirm_password: ['', [Validators.required]],
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
+      first_name: ['', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z]+$')]], // Added validation
+      last_name: ['', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z]+$')]],  // Added validation
       phone_number: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
     }, { validators: this.passwordMatchValidator });
 
@@ -119,7 +117,7 @@ export class NewloginComponent implements OnInit {
       }
     } catch (error: any) {
       console.error('Login failed:', error);
-      this.snackBar.open('Login failed: ' + error.error.message, 'Close', { duration: 5000 });
+      this.snackBar.open('Login failed: username or password is invalid', 'Close', { duration: 5000 });
     }
   }
 }

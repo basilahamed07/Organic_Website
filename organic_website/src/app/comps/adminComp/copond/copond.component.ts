@@ -12,7 +12,7 @@ export class CopondComponent implements OnInit {
   paginatedData: any[] = []; // Array to hold the current page data
   searchTerm: string = ''; // Search term for filtering
   currentPage: number = 1; // Current page number
-  itemsPerPage: number = 10; // Items per page
+  itemsPerPage: number = 6; // Items per page
   totalPages: number = 1; // Total number of pages
   access: string | null = sessionStorage.getItem("access");
 

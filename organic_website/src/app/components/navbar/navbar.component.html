@@ -49,3 +49,14 @@
       </div>
     </div>
   </nav>
+  <div class="mobile-menu fixed inset-0 bg-green-600 md:hidden z-40 flex flex-col items-center pt-16 transition-transform duration-300" [ngClass]="{'translate-y-0': isMenuOpen, '-translate-y-full': !isMenuOpen}">
+    <a href="#" class="nav-link mb-4">Home</a>
+    <a href="#" class="nav-link mb-4">About</a>
+    <a href="#" class="nav-link mb-4">Products</a>
+    <a href="#" class="nav-link mb-4">Contact</a>
+    <button (click)="toggleMenu()" class="text-white text-2xl mt-4">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>

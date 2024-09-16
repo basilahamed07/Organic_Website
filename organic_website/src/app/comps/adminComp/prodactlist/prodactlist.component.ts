@@ -12,7 +12,7 @@ export class ProdactlistComponent implements OnInit {
   filteredData: any[] = []; // Array to hold the filtered data
   searchTerm: string = ''; // Search term for filtering
   currentPage: number = 1;
-  pageSize: number = 3;
+  pageSize: number = 4;
   access: string | null = sessionStorage.getItem("access");
 
   constructor(private apiService: GenericApiService, private route: Router) {}

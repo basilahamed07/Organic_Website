@@ -26,7 +26,7 @@ export class ContactusComponent  {
       const access = sessionStorage.getItem("access");
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${access}`
-    });this.http.post('http://localhost:8000/api/feedback/', formData, {headers}).subscribe(
+    });this.http.post('http://localhost:8000/api/feedback/', formData).subscribe(
       response => {
         // Handle success (show success message, clear form, etc.)
         window.alert('Message sent successfully!');

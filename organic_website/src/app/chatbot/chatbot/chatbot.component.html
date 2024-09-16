@@ -32,7 +32,7 @@
       <!-- Cart Messages -->
       <div *ngIf="message.type === 'cart'" class="cart-list">
         <div *ngFor="let item of message.items" class="cart-item">
-          <img [src]="item.image" alt="Product Image" class="cart-item-image" *ngIf="item.image">
+          <!-- <img [src]="item.image" alt="Product Image" class="cart-item-image" *ngIf="item.image"> -->
           <div class="cart-item-details">
             <h4>{{ item.name }}</h4>
             <p>Price: ₹{{ item.price }}</p>
